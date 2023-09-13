@@ -13,13 +13,15 @@ public class DemoController {
     private Coach myCoach;
 
     @Autowired
-    DemoController(@Qualifier("baseballCoach") Coach myCoach) { //qualifier name should be same as the class which needs to be injected but with camelCase
-        this.myCoach = myCoach;
+    DemoController(@Qualifier("aquatic") Coach theCoach) {
+        System.out.println("In constructor: " + getClass().getSimpleName());
+        this.myCoach = theCoach;
     }
 
     @GetMapping("/dailyWorkout")
     public String getDailyWorkout() {
         return myCoach.getDailyWorkout();
     }
+
 }
 

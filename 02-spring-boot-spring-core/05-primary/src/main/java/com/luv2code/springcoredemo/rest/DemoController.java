@@ -13,7 +13,7 @@ public class DemoController {
     private Coach myCoach;
 
     @Autowired
-    DemoController(@Qualifier("baseballCoach") Coach myCoach) { //qualifier name should be same as the class which needs to be injected but with camelCase
+    DemoController(Coach myCoach) { //qualifier name should be same as the class which needs to be injected but with camelCase
         this.myCoach = myCoach;
     }
 

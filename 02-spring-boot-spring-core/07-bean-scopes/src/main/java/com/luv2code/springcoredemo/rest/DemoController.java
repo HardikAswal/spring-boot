@@ -11,15 +11,25 @@ public class DemoController {
 
     // define a private field for the dependency
     private Coach myCoach;
+    private Coach anotherCoach;
 
     @Autowired
-    DemoController(@Qualifier("baseballCoach") Coach myCoach) { //qualifier name should be same as the class which needs to be injected but with camelCase
-        this.myCoach = myCoach;
+    //qualifier name should be same as the class which needs to be injected but with camelCase
+    DemoController(@Qualifier("cricketCoach") Coach theCoach,
+                   @Qualifier("cricketCoach") Coach theAnotherCoach) {
+        System.out.println("In constructor: " + getClass().getSimpleName());
+        this.myCoach = theCoach;
+        anotherCoach = theAnotherCoach;
     }
 
     @GetMapping("/dailyWorkout")
     public String getDailyWorkout() {
         return myCoach.getDailyWorkout();
+    }
+
+    @GetMapping("/check")
+    public String check() {
+        return "Comparing beans: " +  (myCoach == anotherCoach);
     }
 }
 
